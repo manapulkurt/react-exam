@@ -23,6 +23,12 @@ const columns = [
   {
     title: 'Date of Visit',
     dataIndex: 'email',
+    filters: [
+      { text: 'Today', value: 'yoday' }, 
+      { text: 'Yesterday', value: 'yesterday' }, 
+      { text: 'Last Week', value: 'last week' }, 
+      { text: 'This month', value: 'this month' }
+    ],
   },
 ]
 
