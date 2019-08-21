@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 import { Table } from 'antd'
 import { Card } from 'antd'
+import { Icon } from 'antd'
 import reqwest from 'reqwest'
 
 const columns = [
@@ -64,8 +65,6 @@ class TableList extends React.Component {
       type: 'json',
     }).then(data => {
       const pagination = { ...this.state.pagination };
-      // Read total count from server
-      // pagination.total = data.totalCount;
       pagination.total = 200;
       this.setState({
         loading: false,
@@ -86,7 +85,7 @@ class TableList extends React.Component {
           loading={this.state.loading}
           onChange={this.handleTableChange}
           bordered
-          title={() => 'List'}
+          title={() => "List of Devices"}
         />
       </Card>
     )

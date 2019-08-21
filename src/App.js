@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import logo from './logo.svg'
-import TableList from './TableList'
+import './index.css'
 
+import TableList from './TableList'
 import 'antd/dist/antd.css'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 
@@ -11,53 +12,52 @@ const { Header, Content, Footer, Sider } = Layout
 const { SubMenu } = Menu
 
 class App extends React.Component {
+
+  state = {
+    collapsed: false,
+  }
+
+  onCollapse = collapsed => {
+    console.log(collapsed);
+    this.setState({ collapsed });
+  }
+
   render() {
     return (
-      <Layout>
 
-        <Sider
-        style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-        }}
-        >
-
-        <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+          <div className="logo"> <h2 style={{ textAlign: "center", color: "white" }}>  IceFox </h2> </div>
+          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
-              <Icon type="user" />
-              <span className="nav-text">nav 1</span>
+              <Icon type="pie-chart" />
+              <span> <a href="/" style={{ color: "white" }}> Home </a> </span>
             </Menu.Item>
-            <Menu.Item key="6">
-              <Icon type="appstore-o" />
-              <span className="nav-text">nav 6</span>
-            </Menu.Item>
-           <Menu.Item key="7">
-            <Icon type="team" />
-            <span className="nav-text">nav 7</span>
-           </Menu.Item>
-           <Menu.Item key="8">
-             <Icon type="shop" />
-             <span className="nav-text">nav 8</span>
-          </Menu.Item>
-        </Menu>
-
+            <SubMenu
+              key="sub1"
+              title={
+                <span>
+                  <Icon type="user" />
+                  <span>List</span>
+                </span>
+              }
+            >
+              <Menu.Item key="3"> <a href="/List1"> List 1 </a> </Menu.Item>
+              <Menu.Item key="4" href="/List2">List 2</Menu.Item>
+            </SubMenu>
+          </Menu>
         </Sider>
-
-          <Layout style={{ marginLeft: 200 }}>
-            <Header style={{ background: '#fff', padding: 0 }} />
-              <BrowserRouter>
+        <Layout>
+            <BrowserRouter>
                <Switch>    
                  <Route exact path='/' component={ TableList }/>
+                 <Route exact path='/List1' component={ TableList }/>
                </Switch>
-              </BrowserRouter>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-          </Layout>
-          
+            </BrowserRouter>
+          <Footer style={{ textAlign: 'center' }}>Icefox Tech Copyright 2019, Made by: Kurt Manapul</Footer>
+        </Layout>
       </Layout>
-      )
+    )
   }
 }
 

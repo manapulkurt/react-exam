@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+/* Avatar of SideBar */
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+/* For Infinite List Loading */
+.demo-loading {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+}
