@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
-import { Table } from 'antd'
-import { Card } from 'antd'
-import { Icon } from 'antd'
+import { Table, Card, Icon } from 'antd'
 import reqwest from 'reqwest'
 
 const columns = [
   {
-    title: 'Device Name',
+    title: 'Name',
     dataIndex: 'name',
     sorter: true,
     render: name => `${name.first} ${name.last}`,
     width: '20%',
   },
   {
-    title: 'IP Address',
+    title: 'Gender',
     dataIndex: 'gender',
     filters: [{ text: 'Male', value: 'male' }, { text: 'Female', value: 'female' }],
     width: '20%',
   },
   {
     title: 'Date of Visit',
-    dataIndex: 'email',
+    dataIndex: 'registered',
+    render: registered => `${registered.date}`,
     filters: [
-      { text: 'Today', value: 'yoday' }, 
+      { text: 'Today', value: 'today' }, 
       { text: 'Yesterday', value: 'yesterday' }, 
       { text: 'Last Week', value: 'last week' }, 
       { text: 'This month', value: 'this month' }
@@ -65,13 +64,14 @@ class TableList extends React.Component {
       url: 'https://randomuser.me/api',
       method: 'get',
       data: {
-        results: 10,
+        results: 5,
         ...params,
       },
       type: 'json',
     }).then(data => {
       const pagination = { ...this.state.pagination };
       pagination.total = 200;
+      pagination.pageSize = 5;
       this.setState({
         loading: false,
         data: data.results,

@@ -13,11 +13,10 @@ code {
 }
 
 
-/* Avatar of SideBar */
-.logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
+/* Banner IceFox */
+.banner {
+  height: 130px;
+  width: 100%;
 }
 
 /* For Infinite List Loading */
@@ -25,4 +24,23 @@ code {
   position: absolute;
   bottom: -40px;
   left: 50%;
+}
+
+/* For Carousel */
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 300px;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
+}
+
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+
+.carousel {
+  height: 130px;
+  width: 100%;
+  object-fit: cover;
 }
